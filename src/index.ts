@@ -11,6 +11,7 @@ import {
   Uri,
   workspace,
   ExtensionContext,
+  window,
 } from 'coc.nvim'
 import {
   TextDocument,
@@ -70,7 +71,7 @@ function getOuterMostWorkspaceFolder(folder: WorkspaceFolder): WorkspaceFolder {
 
 export async function activate(context: ExtensionContext) {
   let module = resolve(context.extensionPath, 'lsp', 'tailwindcss-language-server', 'dist', 'index.js')
-  let outputChannel: OutputChannel = Workspace.createOutputChannel(
+  let outputChannel: OutputChannel = window.createOutputChannel(
     'tailwindcss-language-server'
   )
   const config = workspace.getConfiguration('tailwindCSS')
