@@ -1,4 +1,4 @@
-import { commands, workspace, ExtensionContext, Uri } from 'coc.nvim';
+import { commands, workspace, ExtensionContext, Uri, window } from 'coc.nvim';
 import { Range } from 'vscode-languageserver-protocol';
 import { sortClassString, logger } from './utils';
 import { spawn } from 'child_process';
@@ -74,7 +74,7 @@ export function activateHeadwind(context: ExtensionContext) {
       let workspaceFolder = workspace.workspaceFolders || [];
       if (workspaceFolder[0]) {
         const workspacePath = Uri.parse(workspaceFolder[0].uri).fsPath
-        workspace.showMessage(
+        window.showMessage(
           `Running Headwind on: ${workspacePath}`
         );
 
@@ -97,7 +97,7 @@ export function activateHeadwind(context: ExtensionContext) {
         rustyWindProc.stderr.on('data', data => {
           if (data && data.toString() !== '') {
             log(`rustywind stderr:\n${data.toString()}`);
-            workspace.showMessage(`Headwind error: ${data.toString()}`, 'error');
+            window.showMessage(`Headwind error: ${data.toString()}`, 'error');
           }
         });
       }
