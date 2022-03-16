@@ -23,7 +23,7 @@ Create tailwindCSS configuration in your project
 
 > this extension need the configuration exists in your project
 
-``` bash
+```bash
 tailwind init
 ```
 
@@ -33,22 +33,48 @@ tailwind init
 - `tailwindCSS.emmetCompletions` Enable class name completions for Emmet-style syntax, default: `false`
 - `tailwindCSS.cssLanguages` css languages completion support, default:
 
-  ``` jsonc
-  [ "css", "less", "postcss", "sass", "scss", "stylus", "vue" ]
+  ```jsonc
+  ["css", "less", "postcss", "sass", "scss", "stylus", "vue"]
   ```
 
 - `tailwindCSS.jsLanguages` javascript languages completion support, default:
 
-  ``` jsonc
-  [ "javascript", "javascriptreact", "reason", "typescriptreact" ]
+  ```jsonc
+  ["javascript", "javascriptreact", "reason", "typescriptreact"]
   ```
 
 - `tailwindCSS.htmlLanguages` html languages completion support, default:
 
-  ``` jsonc
-  [ "blade", "edge", "eelixir", "ejs", "elixir", "elm", "erb", "eruby", "haml", "handlebars", "htmldjango", "html", "HTML (EEx)", "HTML (Eex)", "html.twig", "jade", "leaf", "markdown", "njk", "nunjucks", "php", "razor", "slim", "svelte", "twig", "vue" ]
+  ```jsonc
+  [
+    "blade",
+    "edge",
+    "eelixir",
+    "ejs",
+    "elixir",
+    "elm",
+    "erb",
+    "eruby",
+    "haml",
+    "handlebars",
+    "htmldjango",
+    "html",
+    "HTML (EEx)",
+    "HTML (Eex)",
+    "html.twig",
+    "jade",
+    "leaf",
+    "markdown",
+    "njk",
+    "nunjucks",
+    "php",
+    "razor",
+    "slim",
+    "svelte",
+    "twig",
+    "vue"
+  ]
   ```
-
 
 ## Features
 
@@ -125,6 +151,15 @@ Headwind will remove duplicate class names by default. This can be toggled on or
 `"tailwindCSS.headwind.removeDuplicates": false`
 
 ### `tailwindCSS.headwind.runOnSave`:
+
+This fork changed the default alue of `tailwindCSS.headwind.runOnSave` to false to prevent clashing with other formatters (see https://github.com/neoclide/coc.nvim/issues/2704 for reference). If you want to run this command on save along with e.g. coc-prettier, i suggest adding something like this to your vimrc:
+
+```
+augroup CocNvim
+  autocmd BufWritePost *.js,*.vue,*.ts call CocAction('runCommand', 'eslint.executeAutofix') | sleep 100m
+  autocmd BufWritePost *.vue,*.html,*.erb call CocAction('runCommand', 'tailwindCSS.headwind.sortTailwindClasses') | sleep 100m
+augroup END
+```
 
 Headwind will run on save by default (if a `tailwind.config.js` file is present within your working directory). This can be toggled on or off.
 
