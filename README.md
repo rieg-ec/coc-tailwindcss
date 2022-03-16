@@ -8,15 +8,11 @@
 
 ## Install
 
-```viml
-CocInstall coc-tailwindcss
-```
-
-or with [vim-plug](https://github.com/junegunn/vim-plug),
+With [vim-plug](https://github.com/junegunn/vim-plug),
 in your `.vimrc`/`init.vim` inside the `plug#begin/end` block:
 
 ```viml
-Plug 'iamcco/coc-tailwindcss',  {'do': 'yarn install --frozen-lockfile && yarn run build'}
+Plug 'rieg-ec/coc-tailwindcss',  {'do': 'yarn install --frozen-lockfile && yarn run build'}
 ```
 
 Create tailwindCSS configuration in your project
@@ -24,7 +20,7 @@ Create tailwindCSS configuration in your project
 > this extension need the configuration exists in your project
 
 ```bash
-tailwind init
+npx tailwind init
 ```
 
 ## Settings
