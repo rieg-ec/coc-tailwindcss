@@ -1333,7 +1333,7 @@
         },
         "tailwindCSS.headwind.runOnSave": {
           "type": "boolean",
-          "default": true,
+          "default": false,
           "description": "A flag that controls whether or not Headwind will sort your Tailwind CSS classes on save.",
           "scope": "window"
         },
